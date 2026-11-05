@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "pages": [
+    {
+      "slug": "feedback",
+      "component": "Feedback",
+      "title": "Feedback",
+      "link_param": {
+        "name": "veranstaltung",
+        "entity": "veranstaltungen",
+        "label_field": "titel"
+      },
+      "endpoints": [
+        {
+          "entity": "veranstaltungen",
+          "op": "list",
+          "fields": [
+            "titel",
+            "aktive_interaktion"
+          ],
+          "max_records": 500
+        },
+        {
+          "entity": "interaktionen",
+          "op": "list",
+          "fields": [
+            "titel",
+            "frage",
+            "veranstaltung"
+          ],
+          "max_records": 500
+        },
+        {
+          "entity": "feedbacks",
+          "op": "create",
+          "fields": [
+            "feedbacktext",
+            "interaktion",
+            "teilnehmerkuerzel",
+            "absendekennung"
+          ]
+        },
+        {
+          "entity": "teilnehmerkuerzel",
+          "op": "create",
+          "fields": [
+            "veranstaltung",
+            "kuerzel"
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "kuerzel-email",
+      "component": "KuerzelEmail",
+      "title": "E-Mail zu deinem Kürzel",
+      "link_param": {
+        "name": "veranstaltung",
+        "entity": "veranstaltungen",
+        "label_field": "titel"
+      },
+      "endpoints": [
+        {
+          "entity": "veranstaltungen",
+          "op": "list",
+          "fields": [
+            "titel"
+          ],
+          "max_records": 500
+        },
+        {
+          "entity": "teilnehmerkuerzel",
+          "op": "create",
+          "fields": [
+            "kuerzel",
+            "email",
+            "einwilligung",
+            "veranstaltung"
+          ]
+        }
+      ]
+    }
+  ]
+}
