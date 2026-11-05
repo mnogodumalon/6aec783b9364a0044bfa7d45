@@ -1761,8 +1761,8 @@ export const LABELS: Record<CoreLocale, LabelBundle> = {
           "veranstaltung": "Event",
           "titel": "Title",
           "reihenfolge": "Order",
-          "frage": "Question for the Participants",
-          "vorprompt": "Pre-prompt",
+          "frage": "Question for Participants",
+          "vorprompt": "Pre-Prompt",
           "endprompt": "Final Prompt",
           "zusammengefuehrter_text": "Merged Text",
           "ki_antwort": "AI Response"
@@ -1775,7 +1775,7 @@ export const LABELS: Record<CoreLocale, LabelBundle> = {
         "fields": {
           "kuerzel": "Code",
           "email": "Email Address",
-          "einwilligung": "I consent to the storage of my email address with my code",
+          "einwilligung": "I consent to my email address being stored with my code",
           "veranstaltung": "Event"
         },
         "lookups": {}

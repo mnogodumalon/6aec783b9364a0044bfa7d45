@@ -343,7 +343,7 @@ export function TeilnehmerkuerzelDialog({ open, onClose, onSubmit, defaultValues
         <Label htmlFor="kuerzel">{labelFor('kuerzel')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Input
           id="kuerzel"
-          placeholder="z. B. MK-42"
+          placeholder=""
           value={fields.kuerzel ?? ''}
           onChange={e => setFields(f => ({ ...f, kuerzel: e.target.value }))}
           required
@@ -360,7 +360,7 @@ export function TeilnehmerkuerzelDialog({ open, onClose, onSubmit, defaultValues
           id="email"
           type="email"
           inputMode="email"
-          placeholder="z. B. name@beispiel.de"
+          placeholder=""
           value={fields.email ?? ''}
           onChange={e => setFields(f => ({ ...f, email: e.target.value }))}
         />
@@ -384,7 +384,7 @@ export function TeilnehmerkuerzelDialog({ open, onClose, onSubmit, defaultValues
         <Label htmlFor="veranstaltung">{labelFor('veranstaltung')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Combobox
           id="veranstaltung"
-          placeholder="Welche Veranstaltung?"
+          placeholder=""
           items={veranstaltungenListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.titel ?? r.record_id),

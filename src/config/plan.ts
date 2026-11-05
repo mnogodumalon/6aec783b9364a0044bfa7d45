@@ -40,21 +40,21 @@ export const PLAN_SUMMARY = "Du moderierst Veranstaltungen und bereitest dazu In
  *  names ONE record, so it reads the singular (J-6, 03.11.2026: „Auswertungen:
  *  Sommerfest“ for one record); the app label is the list's plural. */
 export const NOUNS: Record<string, { one: string; many: string }> = {
-  "veranstaltungen": {
-    "one": "Veranstaltung",
-    "many": "Veranstaltungen"
+  "feedbacks": {
+    "one": "Feedback",
+    "many": "Feedbacks"
   },
   "interaktionen": {
     "one": "Interaktion",
     "many": "Interaktionen"
   },
+  "veranstaltungen": {
+    "one": "Veranstaltung",
+    "many": "Veranstaltungen"
+  },
   "teilnehmerkuerzel": {
     "one": "Teilnehmerkürzel",
     "many": "Teilnehmerkürzel"
-  },
-  "feedbacks": {
-    "one": "Feedback",
-    "many": "Feedbacks"
   }
 };
 

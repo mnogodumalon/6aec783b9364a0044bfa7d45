@@ -71,7 +71,6 @@ createRecordUrl from the service. Note the lowercase `l` in the service path.
   ✚ EnrichedTeilnehmerkuerzel adds ONLY veranstaltungName — via enrichTeilnehmerkuerzel(teilnehmerkuerzel, { veranstaltungenMap }), all maps required
   → veranstaltung links to app_id 6aec781fb70b7badd9270885
 - Feedbacks (feedbacks): feedbacktext!^[string/textarea] "Dein Feedback", absendekennung!^[string/text], interaktion!^[applookup/select], teilnehmerkuerzel!^[applookup/select]
-  ≡ 3 records at build time
   ◈ interaktion → record (interaktionen, EntitySelectStep) · teilnehmerkuerzel → record (teilnehmerkuerzel, EntitySelectStep)
   ⚙ getFeedbacks() · getFeedback(id) · createFeedback(fields) · updateFeedback(id, fields) · deleteFeedback(id) · queryFeedbacks({ filter, orderby, limit, offset, fields }) · countFeedbacks(filter?)
   ✚ EnrichedFeedbacks adds ONLY interaktionName, teilnehmerkuerzelName — via enrichFeedbacks(feedbacks, { interaktionenMap, teilnehmerkuerzelMap }), all maps required

@@ -343,7 +343,7 @@ export function InteraktionenDialog({ open, onClose, onSubmit, defaultValues, re
         <Label htmlFor="veranstaltung">{labelFor('veranstaltung')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Combobox
           id="veranstaltung"
-          placeholder="Welche Veranstaltung?"
+          placeholder=""
           items={veranstaltungenListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.titel ?? r.record_id),
@@ -363,7 +363,7 @@ export function InteraktionenDialog({ open, onClose, onSubmit, defaultValues, re
         <Label htmlFor="titel">{labelFor('titel')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Input
           id="titel"
-          placeholder="z. B. Ideensammlung zum Einstieg"
+          placeholder=""
           value={fields.titel ?? ''}
           onChange={e => setFields(f => ({ ...f, titel: e.target.value }))}
           required
@@ -382,7 +382,7 @@ export function InteraktionenDialog({ open, onClose, onSubmit, defaultValues, re
           inputMode="decimal"
           step="any"
           {...numberInputProps(formEnhancements, 'reihenfolge')}
-          placeholder="z. B. 1"
+          placeholder=""
           value={fields.reihenfolge !== undefined ? fields.reihenfolge : (computedValues['reihenfolge'] ?? '')}
           onChange={e => setFields(f => ({ ...f, reihenfolge: clampNumberValue(formEnhancements, 'reihenfolge', e.target.value) }))}
         />
@@ -393,7 +393,7 @@ export function InteraktionenDialog({ open, onClose, onSubmit, defaultValues, re
         <Label htmlFor="frage">{labelFor('frage')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Textarea
           id="frage"
-          placeholder="Was sollen die Teilnehmenden beantworten?"
+          placeholder=""
           value={fields.frage ?? ''}
           onChange={e => setFields(f => ({ ...f, frage: e.target.value }))}
           rows={3}
@@ -408,7 +408,7 @@ export function InteraktionenDialog({ open, onClose, onSubmit, defaultValues, re
         <Label htmlFor="vorprompt">{labelFor('vorprompt')}</Label>
         <Textarea
           id="vorprompt"
-          placeholder="Anweisung vor den Antworten"
+          placeholder=""
           value={fields.vorprompt ?? ''}
           onChange={e => setFields(f => ({ ...f, vorprompt: e.target.value }))}
           rows={3}
@@ -420,7 +420,7 @@ export function InteraktionenDialog({ open, onClose, onSubmit, defaultValues, re
         <Label htmlFor="endprompt">{labelFor('endprompt')}</Label>
         <Textarea
           id="endprompt"
-          placeholder="Anweisung nach den Antworten"
+          placeholder=""
           value={fields.endprompt ?? ''}
           onChange={e => setFields(f => ({ ...f, endprompt: e.target.value }))}
           rows={3}
@@ -432,7 +432,7 @@ export function InteraktionenDialog({ open, onClose, onSubmit, defaultValues, re
         <Label htmlFor="zusammengefuehrter_text">{labelFor('zusammengefuehrter_text')}</Label>
         <Textarea
           id="zusammengefuehrter_text"
-          placeholder="Alle Antworten zusammengeführt"
+          placeholder=""
           value={fields.zusammengefuehrter_text ?? ''}
           onChange={e => setFields(f => ({ ...f, zusammengefuehrter_text: e.target.value }))}
           rows={3}
@@ -444,7 +444,7 @@ export function InteraktionenDialog({ open, onClose, onSubmit, defaultValues, re
         <Label htmlFor="ki_antwort">{labelFor('ki_antwort')}</Label>
         <Textarea
           id="ki_antwort"
-          placeholder="Die Antwort der KI"
+          placeholder=""
           value={fields.ki_antwort ?? ''}
           onChange={e => setFields(f => ({ ...f, ki_antwort: e.target.value }))}
           rows={3}

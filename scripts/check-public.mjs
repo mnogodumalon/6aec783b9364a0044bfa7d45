@@ -74,6 +74,7 @@ const planOrdered = new Map();   // `${slug}|${entity}` → Set(keys)
 const planLinkParam = new Map(); // slug → {name, entity, label_field} the plan orders (PV-3)
 const planStatusField = new Map(); // entity → the plan's status field (G-5)
 const planSiblings = new Map(); // slug → other planned pages of the same visitor (one device key, A9)
+const planVisitor = new Map(); // slug → ["entity.field"] filled with the visitor's code
 try {
   const planData = JSON.parse(readFileSync('.plan.json', 'utf8'));
   for (const pg of planData.public_pages || []) {
@@ -87,13 +88,34 @@ try {
   for (const [ent, prof] of Object.entries(planData.entities || {})) {
     if (prof && prof.status_field) planStatusField.set(ent, prof.status_field);
   }
-  const keyed = (planData.public_pages || []).filter(pg => (pg.creates || []).some(c => Object.values(c.fields || {}).includes('derived:visitor_key'))).map(pg => pg.slug);
+  // the visitor's code: `visitor_fields` (the plan's derived:visitor_key, and a derived:device
+  // field two pages share — Bau 13), else derived:visitor_key for plans from before
+  for (const pg of planData.public_pages || []) {
+    const vf = Array.isArray(pg.visitor_fields) ? pg.visitor_fields
+      : (pg.creates || []).flatMap(c => Object.entries(c.fields || {}).filter(([, s]) => s === 'derived:visitor_key').map(([k]) => `${c.entity}.${k}`));
+    if (vf.length) planVisitor.set(pg.slug, vf);
+  }
+  const keyed = [...planVisitor.keys()];
   for (const s of keyed) planSiblings.set(s, keyed.filter(o => o !== s));
 } catch {
   // no plan on disk — the prompt's words decide, as before
 }
 // The same visitor's pages link on (A9, Bau 10: the feedback's thank-you had no way to the
 // e-mail page although the brief asked for it): every planned sibling appears as `/public/<slug>`.
+// The visitor's code comes from useVisitorKey ONLY (Bau 13: the feedback page kept its own
+// localStorage code, the e-mail page used useVisitorKey — one visitor, two codes).
+function checkVisitorKey(slug, src, file, sink) {
+  const fields = planVisitor.get(slug) || [];
+  if (!fields.length) return;
+  if (!/\b(?:useVisitorKey|visitorKey)\(/.test(src)) {
+    sink.push(`${file}: page '${slug}' fills ${fields.join(', ')} with the visitor's code — take it from useVisitorKey() ('@/lib/journey'), the one code per device every public page shares; never an own generator`);
+  }
+  const own = /\b(?:window\.)?localStorage\.(?:setItem|getItem)\(/.exec(src);
+  if (own) {
+    const line = src.slice(0, own.index).split('\n').length;
+    sink.push(`${file}:${line}: page '${slug}' reads or writes localStorage itself — the visitor's code lives in useVisitorKey(), drafts in the journey layer; an own key gives the same visitor a second code`);
+  }
+}
 function checkSiblingLinks(slug, src, file, sink) {
   const missing = (planSiblings.get(slug) || []).filter(s => !src.includes(`/public/${s}`));
   if (missing.length) {
@@ -727,6 +749,7 @@ if (pageOnly) {
     }
     for (const ep of frag.endpoints) checkEndpoint(slug, ep, stagedSrc, fileArg, f);
     checkSiblingLinks(slug, stagedSrc, fileArg, errors);
+    checkVisitorKey(slug, stagedSrc, fileArg, errors);
   }
   // the lane sees its warnings too — before, file mode printed errors only (Abnahme 8)
   for (const w of warnings) console.log(`WARN: ${w}`);
@@ -831,6 +854,7 @@ for (const [slug, page] of surfacePages) {
   }
   // a warning in the tree run: a page built before the rule must not block an update
   if (src) checkSiblingLinks(slug, src, `${PAGES_DIR}/${page.component}.tsx`, warnings);
+  if (src) checkVisitorKey(slug, src, `${PAGES_DIR}/${page.component}.tsx`, warnings);
   // PV-3: the plan ordered a link parameter — the surface must declare it, same entity
   const planned = planLinkParam.get(slug);
   if (planned && (!page.link_param || page.link_param.entity !== planned.entity)) {

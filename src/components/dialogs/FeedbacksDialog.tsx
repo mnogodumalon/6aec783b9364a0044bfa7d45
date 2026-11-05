@@ -371,7 +371,7 @@ export function FeedbacksDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="feedbacktext">{labelFor('feedbacktext')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Textarea
           id="feedbacktext"
-          placeholder="Was möchtest du mitteilen?"
+          placeholder=""
           value={fields.feedbacktext ?? ''}
           onChange={e => setFields(f => ({ ...f, feedbacktext: e.target.value }))}
           rows={3}
@@ -386,7 +386,7 @@ export function FeedbacksDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="absendekennung">{labelFor('absendekennung')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Input
           id="absendekennung"
-          placeholder="z. B. FB-2026-001"
+          placeholder=""
           value={fields.absendekennung ?? ''}
           onChange={e => setFields(f => ({ ...f, absendekennung: e.target.value }))}
           required
@@ -401,7 +401,7 @@ export function FeedbacksDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="interaktion">{labelFor('interaktion')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Combobox
           id="interaktion"
-          placeholder="Welche Interaktion?"
+          placeholder=""
           items={interaktionenListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.titel ?? r.record_id),
@@ -421,7 +421,7 @@ export function FeedbacksDialog({ open, onClose, onSubmit, defaultValues, record
         <Label htmlFor="teilnehmerkuerzel">{labelFor('teilnehmerkuerzel')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Combobox
           id="teilnehmerkuerzel"
-          placeholder="Welches Kürzel?"
+          placeholder=""
           items={teilnehmerkuerzelListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.email ?? r.record_id),

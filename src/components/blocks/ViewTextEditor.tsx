@@ -102,7 +102,7 @@ export function ViewTextEditor({ field, recordId, value, save, delayMs = 800, st
         value={text}
         onChange={e => onChange(e.target.value)}
         className="min-h-[50vh] w-full flex-1 resize-none rounded-2xl border border-input bg-card p-6 leading-relaxed outline-none focus-visible:ring-2 focus-visible:ring-ring"
-        style={style ?? { fontSize: 'clamp(1.25rem, 2.4vh, 2.5rem)' }}
+        style={style ?? { fontSize: 'clamp(1.25rem, 2.6vh, 2.75rem)' }}
         aria-label={field}
       />
       <div className="flex flex-wrap items-center gap-3" style={{ fontSize: 'clamp(1rem, 1.8vh, 1.75rem)' }}>

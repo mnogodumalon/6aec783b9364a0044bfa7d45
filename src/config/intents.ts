@@ -43,9 +43,9 @@ export interface IntentLink {
 
 export const INTENTS: IntentLink[] = [
   // <custom:intents>
-  { path: '/intents/aktive-interaktion-setzen', label: { de: 'Aktive Interaktion setzen', en: 'Set active interaction' }, icon: IconPlayerPlay, description: 'Eine Interaktion der Veranstaltung mit einem Klick als aktiv setzen' },
-  { path: '/intents/feedbacks-zusammenfuehren', label: { de: 'Feedbacks zusammenführen', en: 'Merge feedbacks' }, icon: IconArrowMerge, description: 'Alle Feedbacks der aktiven Interaktion zu einem großen Text verbinden' },
-  { path: '/intents/ki-antwort-einfuegen', label: { de: 'KI-Antwort einfügen', en: 'Add AI answer' }, icon: IconRobot, description: 'Die Antwort des Chatbots bei der Interaktion hinterlegen' },
+  { path: '/intents/aktive-interaktion-setzen', label: { de: 'Aktive Interaktion setzen', en: 'Set active interaction' }, icon: IconPlayerPlay, description: { de: 'Eine Interaktion der Veranstaltung mit einem Klick als aktiv setzen', en: 'Set an interaction of the event as active with one click' } },
+  { path: '/intents/feedbacks-zusammenfuehren', label: { de: 'Feedbacks zusammenführen', en: 'Merge feedbacks' }, icon: IconArrowMerge, description: { de: 'Alle Feedbacks der aktiven Interaktion zu einem großen Text verbinden', en: 'Combine all feedback from the active interaction into one large text' } },
+  { path: '/intents/ki-antwort-einfuegen', label: { de: 'KI-Antwort einfügen', en: 'Add AI answer' }, icon: IconRobot, description: { de: 'Die Antwort des Chatbots bei der Interaktion hinterlegen', en: 'Store the chatbot\'s response for the interaction' } },
   // </custom:intents>
 ];
 
@@ -65,5 +65,5 @@ export const INTENTS_PENDING = false;
  * pulsing "werden erstellt …" in every deployed Phase-1 bundle forever — no
  * code path redeploys Phase 1 without the flag (live 03.09.2026).
  */
-export const INTENTS_PENDING_SINCE: string | null = '2026-11-05T12:37:54+00:00';
+export const INTENTS_PENDING_SINCE: string | null = null;
 export const PENDING_MAX_MINUTES = 30;

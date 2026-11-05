@@ -344,7 +344,7 @@ export function VeranstaltungenDialog({ open, onClose, onSubmit, defaultValues, 
         <Label htmlFor="titel">{labelFor('titel')} <span className="text-destructive" aria-hidden="true">*</span></Label>
         <Input
           id="titel"
-          placeholder="z. B. KI-Workshop Frühling"
+          placeholder=""
           value={fields.titel ?? ''}
           onChange={e => setFields(f => ({ ...f, titel: e.target.value }))}
           required
@@ -359,7 +359,7 @@ export function VeranstaltungenDialog({ open, onClose, onSubmit, defaultValues, 
         <Label htmlFor="datum">{labelFor('datum')}</Label>
         <DatePicker
           id="datum"
-          placeholder="Wann findet es statt?"
+          placeholder=""
           mode="datetime"
           value={fields.datum ?? null}
           onChange={v => setFields(f => ({ ...f, datum: v ?? undefined }))}
@@ -371,7 +371,7 @@ export function VeranstaltungenDialog({ open, onClose, onSubmit, defaultValues, 
         <Label htmlFor="ort">{labelFor('ort')}</Label>
         <Input
           id="ort"
-          placeholder="z. B. Berlin, Raum 3"
+          placeholder=""
           value={fields.ort ?? ''}
           onChange={e => setFields(f => ({ ...f, ort: e.target.value }))}
         />
@@ -382,7 +382,7 @@ export function VeranstaltungenDialog({ open, onClose, onSubmit, defaultValues, 
         <Label htmlFor="beschreibung">{labelFor('beschreibung')}</Label>
         <Textarea
           id="beschreibung"
-          placeholder="Worum geht es bei der Veranstaltung?"
+          placeholder=""
           value={fields.beschreibung ?? ''}
           onChange={e => setFields(f => ({ ...f, beschreibung: e.target.value }))}
           rows={3}
@@ -394,7 +394,7 @@ export function VeranstaltungenDialog({ open, onClose, onSubmit, defaultValues, 
         <Label htmlFor="aktive_interaktion">{labelFor('aktive_interaktion')}</Label>
         <Combobox
           id="aktive_interaktion"
-          placeholder="Welche Interaktion?"
+          placeholder=""
           items={interaktionenListAll.map(r => ({
             id: r.record_id,
             label: String(r.fields.titel ?? r.record_id),
