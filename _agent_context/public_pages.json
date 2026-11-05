@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "pages": [
+    {
+      "slug": "feedback",
+      "type": "custom",
+      "entity": "feedbacks",
+      "title": "Feedback",
+      "published": false,
+      "fields": [
+        "feedbacktext",
+        "absendekennung",
+        "interaktion",
+        "teilnehmerkuerzel"
+      ],
+      "policy": null
+    },
+    {
+      "slug": "kuerzel-email",
+      "type": "custom",
+      "entity": "teilnehmerkuerzel",
+      "title": "E-Mail zu deinem Kürzel",
+      "published": false,
+      "fields": [
+        "kuerzel",
+        "email",
+        "einwilligung",
+        "veranstaltung"
+      ],
+      "policy": null
+    }
+  ]
+}

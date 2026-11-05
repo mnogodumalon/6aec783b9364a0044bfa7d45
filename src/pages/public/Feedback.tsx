@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { PublicShell } from '@/components/PublicShell';
 import { Button } from '@/components/ui/button';
 import { Bound } from '@/components/blocks/Bound';
@@ -17,50 +17,15 @@ import {
   useLiveList,
   fieldText,
   fieldRef,
+  useVisitorKey,
+  rememberOwnRecord,
+  ownRecordIds,
   type JourneyPort,
   type PlanStep,
 } from '@/lib/journey';
 import { tx } from '@/i18n';
 
 const SLUG = 'feedback';
-const CODE_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; // ohne 0/O/1/I/l
-const CODE_LENGTH = 5;
-const CODE_STORAGE = 'feedback-kuerzel-code';
-
-function readStore(key: string): string | null {
-  try {
-    return window.localStorage.getItem(key);
-  } catch {
-    return null;
-  }
-}
-
-function writeStore(key: string, value: string): void {
-  try {
-    window.localStorage.setItem(key, value);
-  } catch {
-    /* Speicher nicht verfügbar — das Kürzel gilt dann nur für diese Sitzung */
-  }
-}
-
-function randomCode(): string {
-  const bytes = new Uint8Array(CODE_LENGTH);
-  window.crypto.getRandomValues(bytes);
-  return Array.from(bytes, b => CODE_ALPHABET[b % CODE_ALPHABET.length]).join('');
-}
-
-function deviceCode(): string {
-  const stored = readStore(CODE_STORAGE);
-  if (stored && stored.length === CODE_LENGTH) return stored;
-  const code = randomCode();
-  writeStore(CODE_STORAGE, code);
-  return code;
-}
-
-function newSubmissionId(): string {
-  if (typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
-  return randomCode() + randomCode() + Date.now().toString(36);
-}
 
 export default function Feedback() {
   const [cfg, setCfg] = useState<PublicPagesConfig | null>(null);
@@ -114,7 +79,7 @@ function FeedbackForm({
 }) {
   const events = useLiveList(port, 'veranstaltungen', { intervalMs: 15000 });
   const questions = useLiveList(port, 'interaktionen', { intervalMs: 15000 });
-  const [submissionId, setSubmissionId] = useState(() => newSubmissionId());
+  const kuerzel = useVisitorKey({ length: 5 });
 
   const form = useStepForm('feedbacks', { fields: ['feedbacktext'], autoComplete: true });
 
@@ -122,9 +87,9 @@ function FeedbackForm({
   const activeId = event ? fieldRef(event, 'aktive_interaktion') : null;
   const active = activeId ? questions.records.find(r => r.id === activeId) ?? null : null;
 
-  const storeKey = `feedback-kuerzel-ref-${veranstaltungId}`;
+  const ownEntity = `teilnehmerkuerzel-${veranstaltungId}`;
 
-  const known = readStore(storeKey);
+  const known = ownRecordIds(ownEntity)[0] ?? null;
   const plan: PlanStep[] = [
     ...(known
       ? []
@@ -132,7 +97,7 @@ function FeedbackForm({
           {
             key: 'kuerzel',
             entity: 'teilnehmerkuerzel' as const,
-            values: () => ({ kuerzel: deviceCode(), veranstaltung: veranstaltungId }),
+            values: () => ({ kuerzel: kuerzel, veranstaltung: veranstaltungId }),
           },
         ]),
     {
@@ -141,25 +106,20 @@ function FeedbackForm({
       form,
       primary: true,
       ...(known ? {} : { needs: ['kuerzel'], link: { teilnehmerkuerzel: 'kuerzel' } }),
-      values: () => ({
-        interaktion: activeId ?? '',
-        absendekennung: submissionId,
-        ...(known ? { teilnehmerkuerzel: known } : {}),
-      }),
+      ...(known ? { values: () => ({ teilnehmerkuerzel: known }) } : {}),
     },
   ];
   const submit = useJourneySubmit(port, plan, {
     draftKey: `feedback-${veranstaltungId}`,
     onSuccess: result => {
       const own = result.records.kuerzel;
-      if (own) writeStore(storeKey, own.id);
+      if (own) rememberOwnRecord(ownEntity, own.id);
     },
   });
 
   const again = () => {
     submit.reset();
     form.reset();
-    setSubmissionId(newSubmissionId());
   };
 
   const send = () => {
@@ -184,8 +144,13 @@ function FeedbackForm({
         <p className="text-lg font-semibold">{tx('Danke für dein Feedback!')}</p>
         <div className="rounded-2xl border bg-muted/40 p-4">
           <p className="text-sm text-muted-foreground">{tx('Dein Kürzel für heute Abend')}</p>
-          <p className="mt-1 font-mono text-3xl font-bold tracking-widest">{deviceCode()}</p>
+          <p className="mt-1 font-mono text-3xl font-bold tracking-widest">{kuerzel}</p>
         </div>
+        <Button asChild variant="outline" className="w-full">
+          <Link to={`/public/kuerzel-email?veranstaltung=${encodeURIComponent(veranstaltungId)}`}>
+            {tx('E-Mail zu deinem Kürzel hinterlegen')}
+          </Link>
+        </Button>
         <Button className="w-full" onClick={again}>
           {tx('Weiteres Feedback abgeben')}
         </Button>

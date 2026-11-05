@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "flows": [
+    {
+      "path": "/intents/aktive-interaktion-setzen",
+      "label": "Aktive Interaktion setzen",
+      "description": "Eine Interaktion der Veranstaltung mit einem Klick als aktiv setzen",
+      "file": "src/pages/intents/AktiveInteraktionSetzenPage.tsx",
+      "summary": "/**\n * Aktive Interaktion setzen — 3-Schritt-Wizard.\n * Steps: 1) Veranstaltung wählen → 2) Eine Interaktion dieser Veranstaltung wählen → 3) Prüfen & als aktiv setzen.\n * Reads: veranstaltungen, interaktionen. Writes: veranstaltungen.aktive_interaktion (update, via useAktiveInteraktionSetzenFlow).\n * Composes: IntentWizardShell, EntitySelectStep, StepNav, SummaryStep, SuccessStep.\n */",
+      "components": [
+        "EntitySelectStep",
+        "IntentWizardShell",
+        "StepNav",
+        "SuccessStep",
+        "SummaryStep",
+        "WizardStep"
+      ],
+      "writes": []
+    },
+    {
+      "path": "/intents/feedbacks-zusammenfuehren",
+      "label": "Feedbacks zusammenführen",
+      "description": "Alle Feedbacks der aktiven Interaktion zu einem großen Text verbinden",
+      "file": "src/pages/intents/FeedbacksZusammenfuehrenPage.tsx",
+      "summary": "/**\n * Feedbacks zusammenführen — 3-Schritt-Wizard.\n * Steps: 1) Veranstaltung wählen → 2) Aktive Interaktion und ihre Feedbacks ansehen → 3) Zusammenführen auslösen (Prüfen).\n * Reads: veranstaltungen, interaktionen, feedbacks, teilnehmerkuerzel. Writes: interaktionen.zusammengefuehrter_text (update via flow hook).\n * Composes: IntentWizardShell, EntitySelectStep, StepNav, SummaryStep, SuccessStep.\n */",
+      "components": [
+        "EntitySelectStep",
+        "IntentWizardShell",
+        "StepNav",
+        "SuccessStep",
+        "SummaryStep",
+        "WizardStep"
+      ],
+      "writes": []
+    },
+    {
+      "path": "/intents/ki-antwort-einfuegen",
+      "label": "KI-Antwort einfügen",
+      "description": "Die Antwort des Chatbots bei der Interaktion hinterlegen",
+      "file": "src/pages/intents/KiAntwortEinfuegenPage.tsx",
+      "summary": "/**\n * KI-Antwort einfügen — 3-Schritt-Wizard.\n * Steps: 1) Interaktion wählen → 2) Antwort der KI einfügen → 3) Prüfen & speichern.\n * Reads: interaktionen (Titel, Veranstaltung, zusammengeführter Text, KI-Antwort). Writes: interaktionen.ki_antwort (update, via useKiAntwortEinfuegenFlow).\n * Composes: IntentWizardShell, EntitySelectStep, Bound, StepNav, SummaryStep, SuccessStep.\n */",
+      "components": [
+        "Bound",
+        "EntitySelectStep",
+        "IntentWizardShell",
+        "StepNav",
+        "SuccessStep",
+        "SummaryStep",
+        "WizardStep"
+      ],
+      "writes": []
+    }
+  ],
+  "unregistered_pages": []
+}
