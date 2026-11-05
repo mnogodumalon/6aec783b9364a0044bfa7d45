@@ -1,0 +1,11 @@
+Wir moderieren Veranstaltungen und lassen die Teilnehmenden gemeinsam mit KI denken.
+Ich bereite Interaktionen vor; jede hat eine Frage an die Teilnehmenden, einen Vorprompt und einen Endprompt.
+Zu einer Veranstaltung ist immer genau eine Interaktion aktiv, die ich mit einem Klick setze.
+Teilnehmende scannen einen QR-Code und sehen ohne Anmeldung nur das Feedback-Formular der gerade aktiven Interaktion; jeder kann beliebig viele Feedbacks geben.
+Beim ersten Feedback bekommt jedes Handy still ein fünfstelliges Kürzel, merkt es sich für den ganzen Abend und zeigt es nach jedem Absenden; ein Feedback darf nie doppelt ankommen.
+Am Ende kann jeder freiwillig seine E-Mail-Adresse mit Einwilligung zu seinem Kürzel hinterlegen.
+Den QR-Code der Veranstaltung öffne ich bildschirmfüllend in einem eigenen Browsertab.
+Mit einem Klick führe ich alle Feedbacks der aktiven Interaktion in ein großes Textfeld zusammen: oben der Vorprompt, dann jedes Feedback mit seinem Kürzel, unten der Endprompt.
+Dieses Textfeld öffne ich bildschirmfüllend in einem eigenen Tab, gehe es mit den Teilnehmenden durch und ändere den Text beliebig; er bleibt gespeichert.
+Den Text kopiere ich mit einem Klick und gebe ihn selbst in einen Chatbot; die Antwort der KI füge ich gleich oder später bei der Interaktion wieder ein.
+Veranstaltungen und Interaktionen lege ich selbst an; eine besondere Moderationsansicht brauche ich nicht.

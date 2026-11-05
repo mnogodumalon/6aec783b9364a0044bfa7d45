@@ -1,0 +1,32 @@
+{
+  "entities": {
+    "Veranstaltungen": {
+      "placeholders_set": 5,
+      "defaults_keys": [
+        "datum"
+      ],
+      "computed_keys": [],
+      "reason": "Keine Formeln, da es nur ein Datum gibt und die Reihenfolge der Interaktion weder Menge noch Preis ist."
+    },
+    "Interaktionen": {
+      "placeholders_set": 8,
+      "defaults_keys": [
+        "reihenfolge"
+      ],
+      "computed_keys": [],
+      "reason": "Keine Formeln, da die Interaktionen reine Text- und Stammdaten ohne numerische Berechnungskette sind; Reihenfolge startet bei 1."
+    },
+    "Teilnehmerkürzel": {
+      "placeholders_set": 3,
+      "defaults_keys": [],
+      "computed_keys": [],
+      "reason": "Reine Stammdaten ohne Zahlen oder Datumspaare, daher keine Formeln; Einwilligung bekommt bewusst keinen Default."
+    },
+    "Feedbacks": {
+      "placeholders_set": 4,
+      "defaults_keys": [],
+      "computed_keys": [],
+      "reason": "Keine Formeln, da es nur Textfeedback und Verknüpfungen ohne Datums- oder Preisfelder gibt; die Reihenfolge der Interaktion ergibt keine sinnvolle Berechnung."
+    }
+  }
+}

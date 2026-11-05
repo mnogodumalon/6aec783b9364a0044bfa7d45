@@ -1,0 +1,32 @@
+{
+  "pages": {
+    "en": {
+      "+{0} weitere": "+{0} more",
+      "Aktiv": "Active",
+      "Aktiv setzen": "Set active",
+      "Aktiv: {0} — {1} bisher.": "Active: {0} — {1} so far.",
+      "Als aktive Interaktion setzen": "Set as active interaction",
+      "Antwort einfügen": "Paste response",
+      "Erste Veranstaltung anlegen": "Create first event",
+      "Feedbacks in aktiven Interaktionen": "Feedback in active interactions",
+      "Feedbacks zu einem Text zusammenführen": "Merge feedback into one text",
+      "Feedbacks zu „{0}“": "Feedback on \"{0}\"",
+      "Interaktion hinzufügen": "Add interaction",
+      "KI-Antwort einfügen": "Paste AI response",
+      "Keine Antwort offen.": "No response pending.",
+      "Keine Veranstaltung in dieser Ansicht.": "No event in this view.",
+      "Lege deine erste Veranstaltung an, dann kann es losgehen.": "Create your first event, then you're ready to go.",
+      "Lege eine Veranstaltung an und bereite Interaktionen mit Frage, Vorprompt und Endprompt vor.": "Create an event and prepare interactions with a question, pre-prompt, and final prompt.",
+      "Neue Veranstaltung": "New event",
+      "Nichts zu tun — sobald Feedbacks eintreffen, erscheint die Interaktion hier.": "Nothing to do — once feedback arrives, the interaction will appear here.",
+      "Noch keine Feedbacks — die Teilnehmenden scannen den QR-Code.": "No feedback yet — participants scan the QR code.",
+      "Noch keine Interaktion vorbereitet.": "No interaction prepared yet.",
+      "Ohne aktive Interaktion": "No active interaction",
+      "QR-Code": "QR code",
+      "Text zusammenführen": "Merge text",
+      "Zusammenführen": "Merge",
+      "{0} — noch keine Interaktion aktiv.": "{0} — no active interaction yet."
+    }
+  },
+  "v": 1
+}
